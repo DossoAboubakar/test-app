@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/test_app",
+            "outputPath": "dist/test-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,9 +25,12 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -57,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test_app:build:production"
+              "buildTarget": "test-app:build:production"
             },
             "development": {
-              "buildTarget": "test_app:build:development"
+              "buildTarget": "test-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "test_app:build"
+            "buildTarget": "test-app:build"
           }
         },
         "test": {
@@ -84,12 +87,19 @@
               "src/assets"
             ],
             "styles": [
+              "test-app/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "test-app/node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f4fff8b5-80a0-4e39-b75a-06ad1318c132"
   }
 }
