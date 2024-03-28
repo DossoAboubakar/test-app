@@ -6,16 +6,19 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthServiceService {
-
+  
   constructor(private router: Router ,private fireauth:AngularFireAuth) { }
+  isLogged : boolean = false; 
   // Login method
   login(email: string, password: string) {
    this.fireauth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.router.navigate(['pageAccueil']);
+        this.isLogged = true 
       })
       .catch(err => {
         alert(err.message);
+        this.isLogged = false
         this.router.navigate(['/login']);
       });
   }

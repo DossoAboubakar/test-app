@@ -26,6 +26,7 @@ export class RegisterComponent {
     }
     if (this.password === '') { // Utilisation de '===' pour comparer
       alert('Please enter password');
+      
       return;
     }
     this.auth.register(this.email, this.password);

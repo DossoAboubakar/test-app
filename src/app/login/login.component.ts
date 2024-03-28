@@ -15,6 +15,7 @@ export class LoginComponent {
   email = '';
   password = '';
 
+
   constructor(private auth: AuthServiceService) {} // Injection du service AuthService dans le constructeur
 
   login() {

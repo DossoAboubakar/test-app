@@ -5,7 +5,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { loggedInGuard } from '../logg-in.guard';
 export const routes: Routes = [
     {
         path : '',
@@ -21,16 +21,22 @@ export const routes: Routes = [
         path : 'login',
         component:LoginComponent
     },
-    
     {
-        path : 'pageAccueil',
-        component:PageAccueilComponent
+        path: '',
+        canActivate: [loggedInGuard],
+        children:[
+            {
+                path : 'pageAccueil',
+                component:PageAccueilComponent,
+
+            },
+            {
+                path : 'angularDocumentation',
+                component : DocumentationComponent,
+                canActivate: [loggedInGuard]
+            }
+        ]
     },
-    {
-        path : 'angularDocumentation',
-        component : DocumentationComponent
-    },
-    
     {
         path :'**',
         component: PageNotFoundComponent 
