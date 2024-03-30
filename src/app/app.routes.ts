@@ -23,19 +23,21 @@ export const routes: Routes = [
     },
     {
         path: '',
-        canActivate: [loggedInGuard],
+        
         children:[
-            {
-                path : 'pageAccueil',
-                component:PageAccueilComponent,
-
-            },
-            {
-                path : 'angularDocumentation',
-                component : DocumentationComponent,
-                canActivate: [loggedInGuard]
-            }
+            
         ]
+    },
+    {
+        path : 'pageAccueil',
+        component:PageAccueilComponent,
+        canActivate: [loggedInGuard],
+
+    },
+    {
+        path : 'angularDocumentation',
+        component : DocumentationComponent,
+        canActivate: [loggedInGuard],
     },
     {
         path :'**',

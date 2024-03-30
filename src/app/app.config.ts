@@ -3,6 +3,9 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat'
+import { provideHttpClient } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ApiSimulateService } from './api-simulate.service';
 export const firebaseConfig = {
   apiKey: "AIzaSyCArsQUCHpKoLNtD4b_uHfQnhmiUjGzerM",
   authDomain: "test-app-572b2.firebaseapp.com",
@@ -13,6 +16,8 @@ export const firebaseConfig = {
 };
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideAnimationsAsync(),
-  { provide: FIREBASE_OPTIONS, useValue: firebaseConfig }
+  { provide: FIREBASE_OPTIONS, useValue: firebaseConfig },
+    provideHttpClient(),
+    importProvidersFrom(InMemoryWebApiModule.forRoot(ApiSimulateService, { delay: 1000 }),HttpClientInMemoryWebApiModule.forRoot(ApiSimulateService)),
 ]
 };

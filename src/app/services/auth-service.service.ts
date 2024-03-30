@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 export class AuthServiceService {
   
   constructor(private router: Router ,private fireauth:AngularFireAuth) { }
-  isLogged : boolean = false; 
+  isLogged : boolean =  true  
   // Login method
   login(email: string, password: string) {
    this.fireauth.signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.router.navigate(['pageAccueil']);
         this.isLogged = true 
+        this.router.navigate(['pageAccueil']);
       })
       .catch(err => {
         alert(err.message);
