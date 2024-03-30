@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../services/auth-service.service';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,16 @@ import { HttpHandler } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email = '';
   password = '';
 
 
-  constructor(private auth: AuthServiceService, private data: DataService) {} // Injection du service AuthService dans le constructeur
-
+  constructor(private auth: AuthServiceService, private data: DataService ,private globalApp : AppComponent) {} // Injection du service AuthService dans le constructeur
+ ngOnInit(): void {
+   
+  this.globalApp.updateTitle('login-view')
+ }
   login() {
     if (this.email === '') { // Utilisation de '===' pour comparer
       alert('Please enter email');

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,13 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(private primengConfig: PrimeNGConfig, private titleService : Title) {}
 
     ngOnInit() {
         this.primengConfig.ripple = true;
+    }
+    public  updateTitle(title: string){
+    this.titleService.setTitle(title )
     }
   title = 'test_app';
 }
